@@ -1,0 +1,17 @@
+services:
+  web:
+    build:
+      context: .
+      network: host
+    network_mode: host
+    environment:
+      IS_ALLOY: ${IS_ALLOY:-true}
+      PORT: 3000
+      RAILS_ENV: production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-7d0f2d9be604ddc45f550ce745b5e14a05d1a78220ac84d5d28c8ce58115a85d}
+    volumes:
+      - taskmaster_storage:/rails/storage
+    command: ["bash", "-lc", "bin/rails db:prepare && bin/rails server -b 0.0.0.0 -p 3000"]
+
+volumes:
+  taskmaster_storage:

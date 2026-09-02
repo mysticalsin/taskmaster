@@ -2,7 +2,7 @@
     class: "inline-edit-form",
     data: {
       controller: "inline-edit",
-      action: "keydown.enter->inline-edit#submitForm keydown.esc->inline-edit##{task.new_record? ? 'cancelNew' : 'abort'}"
+      action: "submit->inline-edit#markSubmitting keydown.esc->inline-edit##{task.new_record? ? 'cancelNew' : 'abort'}"
     } do |f| %>
   <%= f.hidden_field :list_id if task.new_record? %>
   <%= f.text_field :title,

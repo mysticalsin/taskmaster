@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <title><%= content_for(:title) || Current.meta_tags.title %></title>
+    <title><%= content_for(:title) || "Task Master" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= viewport_meta_tag %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
     <%= stylesheet_link_tag "tasks", media: "all", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "cable_status", media: "all", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <div class="cable-status"
-         data-controller="cable-status"
-         data-cable-status-task-agent-outlet=".content"
-         data-cable-status-on-connect-value="refreshTasks"></div>
     <div class="background-image" style="background-image: url('<%= asset_path('backg.png') %>');"></div>
 
     <%= yield %>
